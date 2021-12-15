@@ -26,7 +26,7 @@ male_dataset = main_dataset.query("gender == 'male'")
 female_dataset = main_dataset.query("gender == 'female'")
 
 male_dataset.to_sql(con=conn, name='PAVEL_test_male', if_exists='replace', index=False)
-female_dataset.to_sql(con=conn, name='PAVEL_test_male', if_exists='replace', index=False)
+female_dataset.to_sql(con=conn, name='PAVEL_test_female', if_exists='replace', index=False)
 
 # Third Stage
 
@@ -55,7 +55,7 @@ last_reg.to_sql(con=conn, name='PAVEL_test_20', if_exists='replace', index=False
 
 # Fifth Stage
 
-twenty_join_five_sql = """\
+twenty_union_five_sql = """\
                            (SELECT *
                            FROM PAVEL_test_20)
                            UNION
@@ -63,12 +63,12 @@ twenty_join_five_sql = """\
                            FROM PAVEL_test_5)"""
 
 # querying the DB and creating JSON from dataframe
-twenty_join_five = pd.read_sql_query(twenty_join_five_sql, engine)
-twenty_join_five.to_json(path_or_buf="C:/Users/pavel/PycharmProjects/Wix_Bi/first.json")
+twenty_union_five = pd.read_sql_query(twenty_union_five_sql, engine)
+twenty_union_five.to_json(path_or_buf="C:/Users/pavel/PycharmProjects/Wix_Bi/first.json")
 
 # Sixth Stage
 
-twenty_join_two_sql = """\
+twenty_union_two_sql = """\
                            (SELECT *
                            FROM PAVEL_test_20)
                            UNION ALL
@@ -76,7 +76,7 @@ twenty_join_two_sql = """\
                            FROM PAVEL_test_2)"""
 
 # querying the DB and creating JSON from dataframe
-twenty_join_two = pd.read_sql_query(twenty_join_two_sql, engine)
-twenty_join_two.to_json(path_or_buf="C:/Users/pavel/PycharmProjects/Wix_Bi/second.json")
+twenty_union_two = pd.read_sql_query(twenty_union_two_sql, engine)
+twenty_union_two.to_json(path_or_buf="C:/Users/pavel/PycharmProjects/Wix_Bi/second.json")
 
 conn.close()

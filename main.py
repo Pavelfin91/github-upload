@@ -6,7 +6,7 @@ import auth
 
 # First Stage
 
-# Sending a GET request to the mentioned URL retrieving 4500 records
+# Sending a GET request to the mentioned API retrieving 4500 records
 # then, parse the string representation of JSON file to rows of tabular form
 res = requests.get("https://randomuser.me/api/?results=4500")
 if res.ok:

@@ -78,3 +78,5 @@ twenty_join_two_sql = """\
 # querying the DB and creating JSON from dataframe
 twenty_join_two = pd.read_sql_query(twenty_join_two_sql, engine)
 twenty_join_two.to_json(path_or_buf="C:/Users/pavel/PycharmProjects/Wix_Bi/second.json")
+
+conn.close()
